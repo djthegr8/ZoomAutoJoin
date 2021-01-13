@@ -1,0 +1,21 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="100"
+        x:Class="ZoomAutoJoin.TimeForMeeting"
+        Title="Meeting Time!!"
+        Background="Transparent"
+		TransparencyBackgroundFallback="White"
+		WindowState="Normal"
+		Width="400"
+		Height="100"
+		>
+	<Border Background="{StaticResource ThemeBackgroundBrush}" CornerRadius="0">
+		<StackPanel>
+			<TextBlock Name="meettime" Margin="0 15" Classes="Heading" TextAlignment="Center">It's time for </TextBlock>
+			<Button Content="Alright!" Name="wc"/>
+			<Button Content="Not today." Name="nope" />
+		</StackPanel>
+	</Border>
+</Window>
