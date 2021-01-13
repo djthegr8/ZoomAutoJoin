@@ -8,6 +8,7 @@ namespace ZoomAutoJoin
 {
     public class TimeForMeeting : Window
     {
+        public TimeForMeeting() { }
         public TimeForMeeting(Meeting mt)
         {
             this.InitializeComponent(mt);

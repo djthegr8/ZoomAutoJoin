@@ -1,7 +1,9 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using System.Linq;
 using Newtonsoft.Json;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,6 +37,7 @@ namespace ZoomAutoJoin
     }
     public class MainWindow : Window
     {
+        public List<string> meetNamesAndRemove { get { return JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path)).Select(x => x.info).ToList(); } }
         public static string path = "meets.json";
         public bool CanSubmit
         {
@@ -98,7 +101,35 @@ namespace ZoomAutoJoin
             Button submissionButton = this.FindControl<Button>("sub");
             Button bg = this.FindControl<Button>("bg");
             ListBox hah = this.FindControl<ListBox>("hah");
+            Button remove = this.FindControl<Button>("rem");
+            ComboBox cbx = this.FindControl<ComboBox>("cbx");
+            cbx.SelectionChanged += (_, scer) =>
+            {
+                if (cbx.SelectedItem == null) remove.IsEnabled = false;
+                else remove.IsEnabled = true;
+            };
+            remove.Click += (sc, am) =>
+            {
+                if (cbx.SelectedItem == null) return;
+                var str = cbx.SelectedItem.ToString();
+                var ral = JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path));
+                ral.RemoveAll(x => x.info == str);
+                File.WriteAllText(path, JsonConvert.SerializeObject(ral));
+                cbx.Items = ral.Select(k => k.info);
+            };
             hah.SelectionMode = SelectionMode.Multiple;
+            TabControl tc = this.FindControl<TabControl>("tc");
+            tc.SelectionChanged += async (_, _) =>
+            {
+                try
+                {
+                    cbx.Items = meetNamesAndRemove;
+                } catch
+                {
+
+                }
+
+            };
             hah.SelectionChanged += (x, y) =>
             {
                 if (CanSubmit)
@@ -113,8 +144,10 @@ namespace ZoomAutoJoin
             submissionButton.Click += HandleSubmissionClick;
             bg.Click += (_, _) =>
             {
-                this.Close("Running in background!");
+                this.IsVisible = false;// Running in background es :)
             };
+            Console.WriteLine("Do you even write 🤦‍");
+            
         }
 
         private void HandleSubmissionClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -142,7 +175,8 @@ namespace ZoomAutoJoin
             }
             var pes = new PopupYes();
             pes.Show();
-
+            ComboBox cbx = this.FindControl<ComboBox>("cbx");
+            cbx.Items = meetNamesAndRemove;
         }
 
         private void InitializeComponent()
