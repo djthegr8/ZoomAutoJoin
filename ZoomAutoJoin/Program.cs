@@ -18,12 +18,12 @@ namespace ZoomAutoJoin
         public static void Main(string[] args)
         {
             var ss = AppBuilder.Configure<App>().UsePlatformDetect();
-            var tmr = new Timer(new TimerCallback(async x =>
+            var tmr = new Timer(new TimerCallback(x =>
             {
                 if (!wheee) return;
                 Console.WriteLine("uh huh");
                 var currTime = DateTime.Now;
-                var text = await File.ReadAllTextAsync(MainWindow.path);
+                var text = File.ReadAllText(MainWindow.path);
                 if (text == "") return;
                 List<Meeting> LoMs = JsonConvert.DeserializeObject<List<Meeting>>(text);
                 if (LoMs.Any(k =>
@@ -92,11 +92,11 @@ namespace ZoomAutoJoin
                         }
                     }
                     wheee = false;
-                    await System.Threading.Tasks.Task.Delay(60000);
+                    Thread.Sleep(60000);
                     wheee = true;
                 }
             }), null, 0, 2000);
-            ss.StartWithClassicDesktopLifetime(args);
+            ss.StartWithClassicDesktopLifetime(args, Avalonia.Controls.ShutdownMode.OnExplicitShutdown);
         }
 
         // Avalonia configuration, don't remove; also used by visual designer.

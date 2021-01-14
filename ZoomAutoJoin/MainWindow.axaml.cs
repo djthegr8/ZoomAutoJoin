@@ -119,7 +119,7 @@ namespace ZoomAutoJoin
             };
             hah.SelectionMode = SelectionMode.Multiple;
             TabControl tc = this.FindControl<TabControl>("tc");
-            tc.SelectionChanged += async (_, _) =>
+            tc.SelectionChanged += (_, _) =>
             {
                 try
                 {
@@ -144,7 +144,7 @@ namespace ZoomAutoJoin
             submissionButton.Click += HandleSubmissionClick;
             bg.Click += (_, _) =>
             {
-                this.IsVisible = false;// Running in background es :)
+                this.Close();// Running in background es :)
             };
             Console.WriteLine("Do you even write 🤦‍");
             

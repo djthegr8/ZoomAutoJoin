@@ -1,8 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
+	<RuntimeIdentifiers>win7-x64;linux-arm;linux-x64;osx-x64</RuntimeIdentifiers>
     <TargetFramework>net5.0</TargetFramework>
     <StartupObject>ZoomAutoJoin.Program</StartupObject>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.0-rc1" />
