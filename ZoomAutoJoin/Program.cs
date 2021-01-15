@@ -76,6 +76,7 @@ namespace ZoomAutoJoin
                         return true;
                     });
                     var url = $"zoommtg://zoom.us/join?confno={idek.mid}";
+                    if (idek.pwd != "") url += $"&pwd={idek.pwd}";
                     try
                     {
                         Process.Start(url);

@@ -75,6 +75,8 @@
 									<TextBlock Margin="0 5">Enter Meeting ID</TextBlock>
 									<TextBox x:Name="meetid" Name="meetid" Margin="0 5" Height="45" Text="{Binding _MeetID, Mode=TwoWay}">
 									</TextBox>
+									<TextBlock Margin="0 5">Enter Meeting Password (if any)</TextBlock>
+									<TextBox Name="pwd" Margin="0 5" Height="45" AcceptsReturn="False" AcceptsTab="False" Text="{Binding pass}"></TextBox>
 									<!--
 						<TextBlock Margin="0 5">
 							<TextBlock.Text>

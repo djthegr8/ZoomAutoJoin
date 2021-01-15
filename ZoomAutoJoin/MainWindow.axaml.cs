@@ -16,6 +16,7 @@ namespace ZoomAutoJoin
         public TimeSpan ttr { get; set; }
         public string info { get; set; }
         public ulong mid { get; set; }
+        public string pwd { get; set; } = "";
         public Meeting()
         {
 
@@ -95,6 +96,7 @@ namespace ZoomAutoJoin
             }
         }
         public ulong MeetID { get; set; } = 67834597763570865;
+        public string pass { get; set; } = "";
         public MainWindow()
         {
             InitializeComponent();
@@ -156,7 +158,8 @@ namespace ZoomAutoJoin
                 dtr = dys,
                 ttr = timeSpan,
                 info = text,
-                mid = MeetID
+                mid = MeetID,
+                pwd = pass
             };
             if (File.Exists(path))
             {
