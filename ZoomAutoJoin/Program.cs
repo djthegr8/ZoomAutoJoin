@@ -21,7 +21,6 @@ namespace ZoomAutoJoin
             var tmr = new Timer(new TimerCallback(x =>
             {
                 if (!wheee) return;
-                Console.WriteLine("uh huh");
                 var currTime = DateTime.Now;
                 if (!File.Exists(MainWindow.path)) return;
                 var text = File.ReadAllText(MainWindow.path);

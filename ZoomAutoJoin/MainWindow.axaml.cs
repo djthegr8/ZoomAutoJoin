@@ -163,6 +163,7 @@ namespace ZoomAutoJoin
             {
                 var txt = File.ReadAllText(path);
                 List<Meeting> lm = JsonConvert.DeserializeObject<List<Meeting>>(txt);
+                if (lm == null) { lm = new List<Meeting>(); }
                 lm.Add(mt);
                 var rettxt = JsonConvert.SerializeObject(lm);
                 File.WriteAllText(path, rettxt);
