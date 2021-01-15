@@ -23,6 +23,7 @@ namespace ZoomAutoJoin
                 if (!wheee) return;
                 Console.WriteLine("uh huh");
                 var currTime = DateTime.Now;
+                if (!File.Exists(MainWindow.path)) return;
                 var text = File.ReadAllText(MainWindow.path);
                 if (text == "") return;
                 List<Meeting> LoMs = JsonConvert.DeserializeObject<List<Meeting>>(text);

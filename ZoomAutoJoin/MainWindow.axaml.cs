@@ -37,7 +37,7 @@ namespace ZoomAutoJoin
     }
     public class MainWindow : Window
     {
-        public List<string> meetNamesAndRemove { get { return JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path)).Select(x => x.info).ToList(); } }
+        public List<string> meetNamesAndRemove { get { return (File.Exists(path) ? JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path))?.Select(x => x.info).ToList() : new List<string>() { "None" }); } }
         public static string path = "meets.json";
         public bool CanSubmit
         {
