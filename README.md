@@ -11,7 +11,7 @@ A GUI Multi-Platform application for those who forget to join zoom meetings 🤦
 ## How to use?
 1. Download one of our installers, depending on system specifications (win-x64, win-x86 and osx-x64) 
 2. Install the application by clicking on the Installer (and not the application itself. If you do this, it may not work due to Framework dependencies not being met)<br />You may see a console window opening and immediately closing when you run.<br />
-3. Click on *Add a Meeting* and fill in the details of your Zoom Meeting. Note that the password will need to be entered when its Auto-Joining for security reasons.  <br /><br />               
+3. Click on *Add a Meeting* and fill in the details of your Zoom Meeting. <br /><br />               
 ![add](https://media.discordapp.net/attachments/758922634749542420/799554109451272212/unknown.png?width=322&height=269)<br /><br />
 4. Enter the day (multiple days can be selected by pressing Ctrl while selecting) and time (which is a 24h clock in Windows, and 12h with AM/PM on MacOS)
 5. Press submit. You should see a popup opening saying it's added successfully.                            <br /><br />
