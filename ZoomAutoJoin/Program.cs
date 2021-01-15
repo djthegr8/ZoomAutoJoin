@@ -22,9 +22,12 @@ namespace ZoomAutoJoin
         // yet and stuff might break.
         public static void Main(string[] args)
         {
-            var handle = GetConsoleWindow();
-            // Hiding the window, as it makes the app feel better.
-            ShowWindow(handle, 0);
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                var handle = GetConsoleWindow();
+                // Hiding the window, as it makes the app feel better.
+                ShowWindow(handle, 0);
+            }
             // Required for MacOS
             Directory.SetCurrentDirectory(Path.GetDirectoryName(AppContext.BaseDirectory));
             var ss = AppBuilder.Configure<App>().UsePlatformDetect();
