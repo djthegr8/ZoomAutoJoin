@@ -4,25 +4,36 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Reflection;
 using System.IO;
 using System.Linq;
 using System.Threading;
+
 namespace ZoomAutoJoin
 {
     class Program
     {
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         public static bool wheee { get; set; } = true;
         // Initialization code. Don't use any Avalonia, third-party APIs or any
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
         public static void Main(string[] args)
         {
+            var handle = GetConsoleWindow();
+            // Hiding the window, as it makes the app feel better.
+            ShowWindow(handle, 0);
+            // Required for MacOS
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             var ss = AppBuilder.Configure<App>().UsePlatformDetect();
             var tmr = new Timer(new TimerCallback(x =>
             {
                 if (!wheee) return;
                 var currTime = DateTime.Now;
-                if (!File.Exists(MainWindow.path)) return;
+                if (!File.Exists(MainWindow.path)) File.Create("meets.json"); return;
                 var text = File.ReadAllText(MainWindow.path);
                 if (text == "") return;
                 List<Meeting> LoMs = JsonConvert.DeserializeObject<List<Meeting>>(text);
@@ -65,7 +76,7 @@ namespace ZoomAutoJoin
                         if (!isSameTime) return false;
                         return true;
                     });
-                    var url = $"https://zoom.us/j/{idek.mid}";
+                    var url = $"zoommtg://zoom.us/join?confno={idek.mid}";
                     try
                     {
                         Process.Start(url);
@@ -96,7 +107,7 @@ namespace ZoomAutoJoin
                     wheee = true;
                 }
             }), null, 0, 2000);
-            ss.StartWithClassicDesktopLifetime(args, Avalonia.Controls.ShutdownMode.OnExplicitShutdown);
+            ss.StartWithClassicDesktopLifetime(args, Avalonia.Controls.ShutdownMode.OnMainWindowClose);
         }
 
         // Avalonia configuration, don't remove; also used by visual designer.

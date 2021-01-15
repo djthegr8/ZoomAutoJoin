@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Threading;
@@ -37,7 +38,7 @@ namespace ZoomAutoJoin
     }
     public class MainWindow : Window
     {
-        public List<string> meetNamesAndRemove { get { return (File.Exists(path) ? JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path))?.Select(x => x.info).ToList() : new List<string>() { "None" }); } }
+        public List<string> meetNamesAndRemove { get { return (File.Exists(path) ? JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path))?.Select(x => x.info + $"( {x.mid})").ToList() : new List<string>() { "None" }); } }
         public static string path = "meets.json";
         public bool CanSubmit
         {
@@ -113,9 +114,9 @@ namespace ZoomAutoJoin
                 if (cbx.SelectedItem == null) return;
                 var str = cbx.SelectedItem.ToString();
                 var ral = JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path));
-                ral.RemoveAll(x => x.info == str);
+                ral.RemoveAll(x => x.info + $"( {x.mid})" == str);
                 File.WriteAllText(path, JsonConvert.SerializeObject(ral));
-                cbx.Items = ral.Select(k => k.info);
+                cbx.Items = ral.Select(x => x.info + $"( {x.mid})");
             };
             hah.SelectionMode = SelectionMode.Multiple;
             TabControl tc = this.FindControl<TabControl>("tc");
@@ -144,10 +145,8 @@ namespace ZoomAutoJoin
             submissionButton.Click += HandleSubmissionClick;
             bg.Click += (_, _) =>
             {
-                this.Close();// Running in background es :)
-            };
-            Console.WriteLine("Do you even write 🤦‍");
-            
+                this.Hide();// Running in background es :)
+            };           
         }
 
         private void HandleSubmissionClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
