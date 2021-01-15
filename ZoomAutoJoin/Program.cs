@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Reflection;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -27,13 +26,13 @@ namespace ZoomAutoJoin
             // Hiding the window, as it makes the app feel better.
             ShowWindow(handle, 0);
             // Required for MacOS
-            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(AppContext.BaseDirectory));
             var ss = AppBuilder.Configure<App>().UsePlatformDetect();
             var tmr = new Timer(new TimerCallback(x =>
             {
                 if (!wheee) return;
                 var currTime = DateTime.Now;
-                if (!File.Exists(MainWindow.path)) File.Create("meets.json"); return;
+                if (!File.Exists(MainWindow.path)) File.Create("meets.json"); 
                 var text = File.ReadAllText(MainWindow.path);
                 if (text == "") return;
                 List<Meeting> LoMs = JsonConvert.DeserializeObject<List<Meeting>>(text);
