@@ -1,4 +1,5 @@
 # ZoomAutoJoin
+[![CodeFactor](https://www.codefactor.io/repository/github/djthegr8/zoomautojoin/badge)](https://www.codefactor.io/repository/github/djthegr8/zoomautojoin)
 A GUI Multi-Platform application for those who forget to join zoom meetings 🤦‍♂️
 - Easy to use
 - Multi-Platform (Linux, MacOS and Windows)
