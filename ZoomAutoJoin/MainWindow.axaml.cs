@@ -10,19 +10,16 @@ using System.Collections.Generic;
 using System.IO;
 namespace ZoomAutoJoin
 {
-    public class Meeting
+    public partial class Meeting
     {
         public DayToRing dtr { get; set; }
         public TimeSpan ttr { get; set; }
         public string info { get; set; }
         public ulong mid { get; set; }
         public string pwd { get; set; } = "";
-        public Meeting()
-        {
-
-        }
+        public Meeting() { }
     }
-    public class DayToRing
+    public partial class DayToRing
     {
         public bool Monday = false;
         public bool Tuesday = false;
@@ -32,12 +29,9 @@ namespace ZoomAutoJoin
         public bool Saturday = false;
         public bool Sunday = false;
         public int Count { get { return Convert.ToInt32(Monday) + Convert.ToInt32(Tuesday) + Convert.ToInt32(Wednesday) + Convert.ToInt32(Thursday) + Convert.ToInt32(Friday) + Convert.ToInt32(Saturday) + Convert.ToInt32(Saturday); } }
-        public DayToRing()
-        {
-
-        }
+        public DayToRing() { }
     }
-    public class MainWindow : Window
+    public partial class MainWindow : Window
     {
         public List<string> meetNamesAndRemove { get { return (File.Exists(path) ? JsonConvert.DeserializeObject<List<Meeting>>(File.ReadAllText(path))?.Select(x => x.info + $"( {x.mid})").ToList() : new List<string>() { "None" }); } }
         public static string path = "meets.json";
@@ -49,9 +43,7 @@ namespace ZoomAutoJoin
                 else return false;
             }
         }
-        public DayToRing dys { get; set; } = new DayToRing
-        {
-        };
+        public DayToRing dys { get; set; } = new DayToRing();
         public bool Monday { get { return dys.Monday; } set { dys.Monday = value; } }
         public bool Tuesday { get { return dys.Tuesday; } set { dys.Tuesday = value; } }
         public bool Wednesday { get { return dys.Wednesday; } set { dys.Wednesday = value; } }
@@ -127,11 +119,7 @@ namespace ZoomAutoJoin
                 try
                 {
                     cbx.Items = meetNamesAndRemove;
-                } catch
-                {
-
-                }
-
+                } catch { }
             };
             hah.SelectionChanged += (x, y) =>
             {
@@ -147,7 +135,7 @@ namespace ZoomAutoJoin
             submissionButton.Click += HandleSubmissionClick;
             bg.Click += (_, _) =>
             {
-                this.Hide();// Running in background es :)
+                this.Hide();
             };           
         }
 
@@ -181,7 +169,6 @@ namespace ZoomAutoJoin
             ComboBox cbx = this.FindControl<ComboBox>("cbx");
             cbx.Items = meetNamesAndRemove;
         }
-
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
