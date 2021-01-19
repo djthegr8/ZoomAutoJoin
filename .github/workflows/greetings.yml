@@ -11,7 +11,7 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: |
           ### Welcome to Zoom AutoJoin!
-          Thank you so much for contributing by creating an Issue. 
+          Thank you so much for contributing by creating an Issue.
           Check out README.md if it helps solve your issue, if not just wait till a maintainer or community member helps you out!
         pr-message: |
           ### Welcome to Zoom AutoJoin!
