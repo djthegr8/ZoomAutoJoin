@@ -27,6 +27,9 @@ namespace ZoomAutoJoin
                 var handle = GetConsoleWindow();
                 // Hiding the window, as it makes the app feel better.
                 ShowWindow(handle, 0);
+            } else
+            {
+                
             }
             // Required for MacOS
             Directory.SetCurrentDirectory(Path.GetDirectoryName(AppContext.BaseDirectory));
