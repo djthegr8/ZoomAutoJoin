@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Avalonia.Markup.Xaml;
-
+using static ZoomAutoJoin.MainWindow;
 namespace ZoomAutoJoin
 {
     public class TimeForMeeting : Window

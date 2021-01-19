@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using static ZoomAutoJoin.MainWindow;
 
 namespace ZoomAutoJoin
 {
