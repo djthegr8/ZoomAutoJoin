@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/djthegr8/ZoomAutoJoin)
+
 # ZoomAutoJoin
 [![CodeFactor](https://www.codefactor.io/repository/github/djthegr8/zoomautojoin/badge)](https://www.codefactor.io/repository/github/djthegr8/zoomautojoin)                        
 A GUI Multi-Platform application for those who forget to join zoom meetings 🤦‍♂️
