@@ -22,6 +22,8 @@ If you wish to remove a meeting, you can go to the *Remove Meeting* tab and choo
 ![rem](https://media.discordapp.net/attachments/758922634749542420/799554767067676702/unknown.png?width=550&height=150)
 ### How it works
 We save your meeting information locally, i.e., on your computer, as a JSON file and check the time continually to see if it's time for a meeting. Then a Zoom URL is opened by the app when its time.
+## Future Plans
+I plan to release this as a MSIX package, and a Windows Store app.
 ## Credits
 Credits to 
 - Avalonia for the framework
