@@ -51,7 +51,7 @@ namespace ZoomAutoJoin
         public bool Friday { get { return dys.Friday; } set { dys.Friday = value; } }
         public bool Saturday { get { return dys.Saturday; } set { dys.Saturday = value; } }
         public bool Sunday { get { return dys.Sunday; } set { dys.Sunday = value; } }
-        public string _text
+        public string stext
         {
             get { return text; }
             set

@@ -3,11 +3,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local ="ZoomAutoJoin"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
         x:Class="ZoomAutoJoin.MainWindow"
 		Background="{DynamicResource ThemeBackgroundColor}"
         Title="ZoomAutoJoin"
 		Icon="../assets/logo.png"
+        Height="650"
+        Width="1000"
 		>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -71,7 +73,7 @@
 											 Name="minfo"
 											 Height="40"
 											 AcceptsReturn="True"
-											 Text="{Binding _text, Mode=TwoWay}"/>
+											 Text="{Binding stext, Mode=TwoWay}"/>
 									<TextBlock Margin="0 5">Enter Meeting ID</TextBlock>
 									<TextBox x:Name="meetid" Name="meetid" Margin="0 5" Height="45" Text="{Binding _MeetID, Mode=TwoWay}">
 									</TextBox>
@@ -120,16 +122,12 @@
 										<ListBoxItem IsSelected="{Binding Saturday, Mode=TwoWay}">Sun</ListBoxItem>
 									</ListBox>
 									<!-- Buttons -->
-									<Grid>
-										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="*" />
-											<ColumnDefinition Width="*" />
-										</Grid.ColumnDefinitions>
-										<Button Grid.Column="0"
-												Name = "sub"
-												Classes="Primary"
-												IsEnabled="{Binding CanSubmit}"
-												Content="Submit" />
+									<Grid ColumnDefinitions="*,*">
+                                        <Button Grid.Column="0"
+                                                Name = "sub"
+                                                Classes="Primary"
+                                                IsEnabled="{Binding CanSubmit}"
+                                                Content="Submit" />
 										<Button Grid.Column="1"
 												Name="bg"
 												Content="Send to Background"
