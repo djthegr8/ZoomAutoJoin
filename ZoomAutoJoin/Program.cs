@@ -35,7 +35,7 @@ namespace ZoomAutoJoin
             // Required for MacOS
             Directory.SetCurrentDirectory(Path.GetDirectoryName(AppContext.BaseDirectory));
             var ss = AppBuilder.Configure<App>().UsePlatformDetect();
-            var tmr = new Timer(new TimerCallback(x =>
+            var tmr = new Timer(x =>
             {
                 if (!wheee) return;
                 var currTime = DateTime.Now;
@@ -113,7 +113,7 @@ namespace ZoomAutoJoin
                     Thread.Sleep(60000);
                     wheee = true;
                 }
-            }), null, 0, 2000);
+            }, null, 0, 2000);
             ss.StartWithClassicDesktopLifetime(args, Avalonia.Controls.ShutdownMode.OnMainWindowClose);
         }
 

@@ -152,21 +152,24 @@ namespace ZoomAutoJoin
             if (File.Exists(path))
             {
                 var txt = File.ReadAllText(path);
-                List<Meeting> lm = JsonConvert.DeserializeObject<List<Meeting>>(txt);
-                if (lm == null) { lm = new List<Meeting>(); }
+                var lm = JsonConvert.DeserializeObject<List<Meeting>>(txt);
+                if (lm.Any(k => k.info == mt.info))
+                {
+                    mt.info += "_";
+                }
                 lm.Add(mt);
                 var rettxt = JsonConvert.SerializeObject(lm);
                 File.WriteAllText(path, rettxt);
             }
             else
             {
-                List<Meeting> metList = new List<Meeting>() { mt };
+                var metList = new List<Meeting>() { mt };
                 var rettxt = JsonConvert.SerializeObject(metList);
                 File.WriteAllText(path, rettxt);
             }
             var pes = new PopupYes();
             pes.Show();
-            ComboBox cbx = this.FindControl<ComboBox>("cbx");
+            var cbx = this.FindControl<ComboBox>("cbx");
             cbx.Items = meetNamesAndRemove;
         }
         private void InitializeComponent()
